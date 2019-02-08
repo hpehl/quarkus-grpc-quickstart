@@ -1,11 +1,22 @@
 # Shamrock gRPC Quickstart
 
-Demo how to use gRPC with Protean. Uses the [gRPC extension](https://github.com/hpehl/shamrock-grpc-extension). 
+Demo how to use gRPC with Protean. Uses the [gRPC extension](https://github.com/hpehl/shamrock-grpc-extension) and a very simple gRPC service:
 
-This repository contains:
+```proto
+package helloworld;
 
-1. A gRPC service deployed in Protean
-1. A gRPC client to test the service
+service Greeter {
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloReply {
+    string message = 1;
+}
+``` 
 
 ## Get Started
 
