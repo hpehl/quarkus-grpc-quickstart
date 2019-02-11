@@ -20,17 +20,24 @@ message HelloReply {
 
 ## Get Started
 
-### Server
+### Server (JVM)
 
 ```
 mvn clean package
 java -jar target/grpc-quickstart-1.0-SNAPSHOT-runner.jar  
 ```
 
+### Server (Native)
+
+```
+mvn clean package -P native
+./target/grpc-quickstart-1.0-SNAPSHOT-runner  
+```
+
 ### Client
 
 ```
-mvn exec:java -Dexec.mainClass=org.acme.grpc.GreeterClient
+mvn exec:java -Dexec.mainClass=org.acme.grpc.GreeterClient -P client
 ```
 
 Please note this is **wip**!
