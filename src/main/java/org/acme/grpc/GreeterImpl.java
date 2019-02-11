@@ -8,7 +8,7 @@ public class GreeterImpl extends GreeterGrpc.GreeterImplBase {
 
     @Override
     public void sayHello(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
-        System.out.println("Receiving message from " + req);
+        System.out.println("Receiving message from " + req.getName());
         HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
