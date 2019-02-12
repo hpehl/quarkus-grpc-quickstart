@@ -1,22 +1,6 @@
 # Shamrock gRPC Quickstart
 
-Demo how to use gRPC with Protean. Uses the [gRPC extension](https://github.com/hpehl/shamrock-grpc-extension) and a very simple gRPC service:
-
-```proto
-package helloworld;
-
-service Greeter {
-    rpc SayHello (HelloRequest) returns (HelloReply) {}
-}
-
-message HelloRequest {
-    string name = 1;
-}
-
-message HelloReply {
-    string message = 1;
-}
-``` 
+Demo how to use [gRPC](https://grpc.io/) with Protean. Uses the [gRPC extension](https://github.com/hpehl/shamrock-grpc-extension) and the [route guide example](https://github.com/grpc/grpc-java/tree/v1.18.0/examples#grpc-examples).
 
 ## Get Started
 
@@ -34,10 +18,10 @@ mvn clean package -P native
 ./target/grpc-quickstart-1.0-SNAPSHOT-runner  
 ```
 
-### Client
+### Clients
 
 ```
-mvn exec:java -Dexec.mainClass=org.acme.grpc.GreeterClient -P client
+mvn exec:java -Dexec.mainClass=org.acme.grpc.RouteGuideClient -P client
 ```
 
 Please note this is **wip**!
