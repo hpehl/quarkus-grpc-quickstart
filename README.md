@@ -18,7 +18,7 @@ mvn clean package -P native
 ./target/grpc-quickstart-1.0-SNAPSHOT-runner  
 ```
 
-### Clients
+### Client
 
 ```
 mvn exec:java -Dexec.mainClass=org.acme.grpc.RouteGuideClient -P client
