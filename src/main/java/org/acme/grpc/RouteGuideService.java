@@ -1,13 +1,14 @@
 package org.acme.grpc;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.inject.Inject;
 
 import io.grpc.stub.StreamObserver;
 import org.jboss.shamrock.grpc.GrpcService;
@@ -25,11 +26,12 @@ public class RouteGuideService extends RouteGuideGrpc.RouteGuideImplBase {
 
     private static final Logger logger = Logger.getLogger(RouteGuideService.class.getName());
 
-    private final Collection<Feature> features;
+    private final Features features;
     private final ConcurrentMap<Point, List<RouteNote>> routeNotes;
 
-    public RouteGuideService() {
-        this.features = RouteGuideUtil.getFeatures();
+    @Inject
+    public RouteGuideService(Features features) {
+        this.features = features;
         this.routeNotes = new ConcurrentHashMap<Point, List<RouteNote>>();
     }
 

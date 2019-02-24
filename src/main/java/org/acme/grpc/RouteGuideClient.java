@@ -1,7 +1,6 @@
 package org.acme.grpc;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -89,7 +88,7 @@ public class RouteGuideClient {
      * features} with a variable delay in between. Prints the statistics when they are sent from the
      * server.
      */
-    private void recordRoute(List<Feature> features, int numPoints) throws InterruptedException {
+    private void recordRoute(Features features, int numPoints) throws InterruptedException {
         info("*** RecordRoute");
         final CountDownLatch finishLatch = new CountDownLatch(1);
         StreamObserver<RouteSummary> responseObserver = new StreamObserver<RouteSummary>() {
@@ -196,7 +195,7 @@ public class RouteGuideClient {
 
     /** Issues several different requests and then exits. */
     public static void main(String[] args) throws InterruptedException {
-        List<Feature> features = RouteGuideUtil.getFeatures();
+        Features features = new Features();
         RouteGuideClient client = new RouteGuideClient("localhost", 8888);
         try {
             // Looking for a valid feature
