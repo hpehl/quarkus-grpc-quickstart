@@ -20,17 +20,11 @@
     </properties>
 
     <dependencies>
-        <dependency> <!-- Why do I need this? -->
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-undertow-deployment</artifactId>
-            <scope>provided</scope>
-            <version>${quarkus.version}</version>
-        </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-grpc-deployment</artifactId>
             <scope>provided</scope>
-            <version>1.0.0.Alpha1-SNAPSHOT</version>
+            <version>${quarkus.version}</version>
         </dependency>
     </dependencies>
 
@@ -62,10 +56,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.version}</version>
             </plugin>
             <plugin>
                 <groupId>io.quarkus</groupId>
