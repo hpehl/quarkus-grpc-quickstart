@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 
 import io.grpc.stub.StreamObserver;
-import org.jboss.shamrock.grpc.GrpcService;
+import io.quarkus.grpc.GrpcService;
 
 import static java.lang.Math.*;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;

@@ -6,7 +6,7 @@ import io.grpc.Metadata;
 import io.grpc.ServerCall;
 import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
-import org.jboss.shamrock.grpc.GrpcInterceptor;
+import io.quarkus.grpc.GrpcInterceptor;
 
 @GrpcInterceptor
 public class RouteGuideInterceptor implements ServerInterceptor {

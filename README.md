@@ -1,6 +1,6 @@
-# Shamrock gRPC Quickstart
+# Quarkus gRPC Quickstart
 
-Demo how to use [gRPC](https://grpc.io/) with Protean. Uses the [gRPC extension](https://github.com/hpehl/shamrock-grpc-extension) and the [route guide example](https://github.com/grpc/grpc-java/tree/v1.18.0/examples#grpc-examples).
+Demo how to use [gRPC](https://grpc.io/) with Quarkus. Uses the [gRPC extension](https://github.com/hpehl/quarkus-grpc-extension) and the [route guide example](https://github.com/grpc/grpc-java/tree/v1.18.0/examples#grpc-examples).
 
 ## Get Started
 

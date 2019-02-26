@@ -4,7 +4,7 @@
 
     <groupId>org.acme</groupId>
     <artifactId>grpc-quickstart</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -15,20 +15,20 @@
         <grpc.version>1.18.0</grpc.version>
         <protobuf.version>3.5.1</protobuf.version>
         <protoc.version>3.5.1-1</protoc.version>
-        <shamrock.version>0.8.0</shamrock.version>
+        <quarkus.version>1.0.0.Alpha1-SNAPSHOT</quarkus.version>
         <surefire.version>2.22.0</surefire.version>
     </properties>
 
     <dependencies>
         <dependency> <!-- Why do I need this? -->
-            <groupId>org.jboss.shamrock</groupId>
-            <artifactId>shamrock-undertow-deployment</artifactId>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-undertow-deployment</artifactId>
             <scope>provided</scope>
-            <version>${shamrock.version}</version>
+            <version>${quarkus.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.jboss.shamrock</groupId>
-            <artifactId>shamrock-grpc-deployment</artifactId>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-grpc-deployment</artifactId>
             <scope>provided</scope>
             <version>1.0.0.Alpha1-SNAPSHOT</version>
         </dependency>
@@ -68,9 +68,9 @@
                 <version>${surefire.version}</version>
             </plugin>
             <plugin>
-                <groupId>org.jboss.shamrock</groupId>
-                <artifactId>shamrock-maven-plugin</artifactId>
-                <version>${shamrock.version}</version>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-maven-plugin</artifactId>
+                <version>${quarkus.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -88,9 +88,9 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.jboss.shamrock</groupId>
-                        <artifactId>shamrock-maven-plugin</artifactId>
-                        <version>${shamrock.version}</version>
+                        <groupId>io.quarkus</groupId>
+                        <artifactId>quarkus-maven-plugin</artifactId>
+                        <version>${quarkus.version}</version>
                         <executions>
                             <execution>
                                 <goals>
