@@ -1,4 +1,4 @@
-package org.acme.grpc;
+package io.grpc.examples.routeguide;
 
 import java.util.logging.Logger;
 

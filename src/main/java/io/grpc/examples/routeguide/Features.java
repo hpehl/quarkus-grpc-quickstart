@@ -1,5 +1,6 @@
-package org.acme.grpc;
+package io.grpc.examples.routeguide;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -7,8 +8,6 @@ import javax.enterprise.context.ApplicationScoped;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
-
-import static java.util.Collections.emptyList;
 
 @ApplicationScoped
 public class Features implements Iterable<Feature> {
@@ -617,16 +616,15 @@ public class Features implements Iterable<Feature> {
             "  }]\n" +
             "}\n";
 
-    private List<Feature> features;
+    private final List<Feature> features;
 
     public Features() {
+        features = new ArrayList<>();
         try {
             FeatureDatabase.Builder database = FeatureDatabase.newBuilder();
             JsonFormat.parser().merge(JSON, database);
-            features = database.getFeatureList();
-        } catch (InvalidProtocolBufferException ignore) {
-            features = emptyList();
-        }
+            features.addAll(database.getFeatureList());
+        } catch (InvalidProtocolBufferException ignore) {}
     }
 
     @Override
@@ -634,7 +632,11 @@ public class Features implements Iterable<Feature> {
         return features.iterator();
     }
 
-    public int size() {return features.size();}
+    public boolean add(Feature feature) {return features.add(feature);}
 
     public Feature get(int index) {return features.get(index);}
+
+    public int size() {return features.size();}
+
+    void clear() {features.clear();}
 }
