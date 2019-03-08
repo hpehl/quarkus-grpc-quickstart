@@ -7,14 +7,14 @@ Demo how to use [gRPC](https://grpc.io/) with [Quarkus](https://quarkus.io). Use
 ### Server (JVM)
 
 ```
-mvn clean package
+mvn package
 java -jar target/grpc-quickstart-1.0-runner.jar  
 ```
 
 ### Server (Native)
 
 ```
-mvn clean package -P native
+mvn package -P native
 ./target/grpc-quickstart-1.0-runner  
 ```
 
