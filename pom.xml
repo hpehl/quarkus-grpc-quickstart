@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>31</version>
+        <version>32</version>
     </parent>
 
     <groupId>io.grpc.examples.routeguide</groupId>
@@ -31,21 +31,47 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <junit.version>5.3.2</junit.version>
+        <junit.version>5.4.0</junit.version>
         <grpc.version>1.18.0</grpc.version>
         <mockito.version>2.24.5</mockito.version>
         <protobuf.version>3.5.1</protobuf.version>
         <protoc.version>3.5.1-1</protoc.version>
-        <quarkus.version>1.0.0.Alpha1-SNAPSHOT</quarkus.version>
+        <quarkus.version>0.11.0</quarkus.version>
+        <quarkus.grpc.version>0.11.0</quarkus.grpc.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-bom</artifactId>
+                <version>${quarkus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-grpc-deployment</artifactId>
+            <artifactId>quarkus-arc</artifactId>
             <version>${quarkus.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-grpc</artifactId>
+            <version>${quarkus.grpc.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-grpc-test</artifactId>
+            <version>${quarkus.grpc.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -63,12 +89,6 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-grpc-test</artifactId>
-            <version>${quarkus.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -213,91 +233,4 @@
             </build>
         </profile>
     </profiles>
-
-    <!-- This should go away as soon as we publish the artifacts publicly. -->
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>Maven Central</name>
-            <url>http://repo.maven.apache.org/maven2</url>
-        </repository>
-        <!-- Forgot the password? see https://github.com/protean-project/hibernate-protean/wiki/Protean-Nexus-credentials -->
-        <repository>
-            <id>protean-nexus-release</id>
-            <name>Protean AWS Nexus - Releases</name>
-            <url>http://ec2-18-234-117-118.compute-1.amazonaws.com:8081/nexus/content/repositories/releases/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <!-- Forgot the password? see https://github.com/protean-project/hibernate-protean/wiki/Protean-Nexus-credentials -->
-        <repository>
-            <id>protean-nexus-snapshot</id>
-            <name>Protean AWS Nexus - Snapshots</name>
-            <url>http://ec2-18-234-117-118.compute-1.amazonaws.com:8081/nexus/content/repositories/snapshots/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <!-- 10 minutes. Or enforce refresh by using -U option to
-                    Maven -->
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>jboss</id>
-            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <name>Maven Central</name>
-            <url>http://repo.maven.apache.org/maven2</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>protean-nexus-release</id>
-            <name>Protean AWS Nexus - Releases</name>
-            <url>http://ec2-18-234-117-118.compute-1.amazonaws.com:8081/nexus/content/repositories/releases/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <!-- Forgot the password? see https://github.com/protean-project/hibernate-protean/wiki/Protean-Nexus-credentials -->
-        <pluginRepository>
-            <id>protean-nexus-snapshot</id>
-            <name>Protean AWS Nexus - Snapshots</name>
-            <url>http://ec2-18-234-117-118.compute-1.amazonaws.com:8081/nexus/content/repositories/snapshots/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <!-- 10 minutes. Or enforce refresh by using -U option to
-                    Maven -->
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
