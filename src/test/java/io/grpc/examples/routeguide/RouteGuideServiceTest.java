@@ -12,17 +12,12 @@ import io.grpc.Server;
 import io.grpc.inprocess.InProcessChannelBuilder;
 import io.grpc.inprocess.InProcessServerBuilder;
 import io.grpc.stub.StreamObserver;
-import io.quarkus.grpc.test.CleanupTimeout;
-import io.quarkus.grpc.test.GrpcTestExtension;
-import io.quarkus.grpc.test.ManagedChannelCleanupRegistry;
-import io.quarkus.grpc.test.ServerCleanupRegistry;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -32,30 +27,36 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-@ExtendWith(GrpcTestExtension.class)
-@CleanupTimeout(value = 20L, unit = SECONDS)
 class RouteGuideServiceTest {
 
     private Features features;
+    private Server server;
+    private ManagedChannel channel;
     private RouteGuideGrpc.RouteGuideBlockingStub blockingService;
     private RouteGuideGrpc.RouteGuideStub asyncService;
 
     @BeforeEach
-    void setUp(TestInfo info, ServerCleanupRegistry serverRegistry, ManagedChannelCleanupRegistry channelRegistry)
+    void setUp(TestInfo info)
             throws IOException {
         features = new Features();
         features.clear(); // we need an empty features for the tests
 
         RouteGuideService service = new RouteGuideService(features);
-        Server server = serverRegistry.register(InProcessServerBuilder.forName(info.getDisplayName())
+        server = InProcessServerBuilder.forName(info.getDisplayName())
                 .addService(service)
-                .build());
+                .build();
         server.start();
-        ManagedChannel channel = channelRegistry.register(InProcessChannelBuilder.forName(info.getDisplayName())
+        channel = InProcessChannelBuilder.forName(info.getDisplayName())
                 .usePlaintext()
-                .build());
+                .build();
         blockingService = RouteGuideGrpc.newBlockingStub(channel);
         asyncService = RouteGuideGrpc.newStub(channel);
+    }
+
+    @AfterEach
+    void tearDown() {
+        channel.shutdown();
+        server.shutdown();
     }
 
     @Test
