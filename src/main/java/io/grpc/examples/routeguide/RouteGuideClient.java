@@ -211,7 +211,7 @@ public class RouteGuideClient {
     /** Issues several different requests and then exits. */
     public static void main(String[] args) throws InterruptedException {
         Features features = new Features();
-        RouteGuideClient client = new RouteGuideClient("localhost", 8888);
+        RouteGuideClient client = new RouteGuideClient("localhost", 5050);
         try {
             // Looking for a valid feature
             client.getFeature(409146138, -746188906);
