@@ -40,6 +40,7 @@
         <protoc.version>3.5.1-1</protoc.version>
         <quarkus.version>0.12.0</quarkus.version>
         <quarkus.grpc.version>0.12.0</quarkus.grpc.version>
+        <quarkus.grpc.client.version>0.12.0</quarkus.grpc.client.version>
     </properties>
 
     <dependencyManagement>
@@ -63,8 +64,20 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-resteasy</artifactId>
+            <version>${quarkus.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-grpc</artifactId>
             <version>${quarkus.grpc.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-grpc-client</artifactId>
+            <version>${quarkus.grpc.client.version}</version>
             <scope>provided</scope>
         </dependency>
 
