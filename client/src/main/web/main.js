@@ -8,12 +8,13 @@ import '@patternfly/patternfly/patternfly-addons.scss';
 
 // app dependencies
 import './favicon.ico';
+import './styles.scss';
+
 import './form.js';
 import './get-feature.js';
 import './list-features.js';
-import './result.js';
-import './styles.scss';
 import './navigation.js';
+import './result.js';
 
 hljs.registerLanguage('json', json);
 hljs.registerLanguage('protobuf', protobuf);
