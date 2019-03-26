@@ -36,7 +36,7 @@ public class ListFeaturesSocket {
             asyncStub.listFeatures(builder.build(), new StreamObserver<Feature>() {
                 @Override
                 public void onNext(Feature feature) {
-                    Latency.wip();
+                    Latency.suspend();
                     StringWriter writer = new StringWriter();
                     try {
                         JsonFormat.printer().appendTo(feature, writer);

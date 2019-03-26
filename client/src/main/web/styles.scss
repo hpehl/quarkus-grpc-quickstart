@@ -5,6 +5,16 @@
   }
 }
 
+.qs-output {
+  text-align: right;
+  width: 2rem;
+}
+
+.qs-result-overflow {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
 .hljs {
   font-family: "overpass-mono";
   font-size: .75rem;

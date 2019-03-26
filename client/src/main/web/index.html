@@ -187,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            <pre id="list-features-result" class="pf-u-mt-xl pf-u-display-none"></pre>
+            <pre id="list-features-result" class="qs-result-overflow pf-u-mt-xl pf-u-display-none"></pre>
         </section>
 
         <section class="pf-c-page__main-section pf-m-light pf-u-display-none">
@@ -195,13 +195,49 @@
             <div class="pf-c-content">
                 <h1>Route Chat</h1>
                 <p>A bidirectional streaming RPC.</p>
-                <p>Accepts a stream of RouteNotes sent while a route is being traversed, while receiving other
-                    RouteNotes (e.g. from other users).</p>
-                <h2 class="pf-c-title pf-m-lg">Not Yet Implemented</h2>
+                <p>Accepts a stream of route notes sent while a route is being traversed, while receiving other
+                    route notes (e.g. from other users).</p>
+                <div id="route-chat-form" class="pf-c-form pf-m-horizontal">
+                    <div class="pf-c-form__group">
+                        <label class="pf-c-form__label" required for="route-chat-requests">
+                            Requests <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+                        </label>
+                        <div class="pf-c-form__horizontal-group">
+                            <div class="pf-c-input-group">
+                                <input id="route-chat-requests" name="route-chat-requests"
+                                        type="range" required min="1" max="10" step="1" value="3"
+                                        class="pf-u-mr-md"
+                                        aria-describedby="route-chat-requests">
+                                <output id="route-chat-requests-out" name="route-chat-requests-out"
+                                        class="qs-output"
+                                        for="route-chat-requests">3</output>
+                            </div>
+                            <p id="route-chat-lo-desc" class="pf-c-form__helper-text">
+                                The number of randomly generated route notes.</p>
+                        </div>
+                    </div>
+                    <div class="pf-c-form__group pf-m-action">
+                        <div class="pf-c-form__horizontal-group">
+                            <div class="pf-c-form__actions">
+                                <button id="route-chat-submit" class="pf-c-button pf-m-primary">Submit</button>
+                                <button id="route-chat-clear" class="pf-c-button pf-m-secondary">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-</div>
-</section>
-</main>
+            <div id="route-chat-result" class="pf-l-flex pf-u-mt-xl pf-u-display-none">
+                <div class="pf-m-grow">
+                    <div class="pf-c-content"><h3>Client</h3></div>
+                    <pre id="route-chat-result-input" class="qs-result-overflow"></pre>
+                </div>
+                <div class="pf-m-grow">
+                    <div class="pf-c-content"><h3>Server</h3></div>
+                    <pre id="route-chat-result-output" class="qs-result-overflow"></pre>
+                </div>
+            </div>
+        </section>
+    </main>
 </div>
 </body>
 </html>

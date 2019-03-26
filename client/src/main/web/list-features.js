@@ -1,5 +1,5 @@
 import {clearForm, validateForm} from "./form.js";
-import {appendResult, clearResult} from "./result.js";
+import {codeElement} from "./result.js";
 
 const BASE_ID = "list-features";
 const LIST_FEATURES_ENDPOINT = "ws://localhost:8080/list-features";
@@ -17,6 +17,18 @@ function sample(event) {
     document.getElementById(BASE_ID + "-hi-lon").value = a.dataset.hiLon;
 }
 
+function connect() {
+    return new Promise((resolve, reject) => {
+        socket = new WebSocket(LIST_FEATURES_ENDPOINT);
+        socket.onmessage = (m) => appendResult(JSON.parse(m.data));
+        socket.onerror = (e) => appendResult({error: e});
+        socket.onopen = () => {
+            connected = true;
+            resolve("Connected to " + LIST_FEATURES_ENDPOINT);
+        };
+    });
+}
+
 function submit() {
     if (validateForm(BASE_ID)) {
         let loLat = parseInt(document.getElementById(BASE_ID + "-lo-lat").value, 10);
@@ -28,34 +40,42 @@ function submit() {
             hi: {latitude: hiLat, longitude: hiLon}
         });
         if (!connected) {
-            connect().then((message) => {
-                clearResult(BASE_ID);
+            connect().then((_) => {
+                clearResult();
                 socket.send(payload);
             });
         } else {
-            clearResult(BASE_ID);
+            clearResult();
             socket.send(payload);
         }
     }
 }
 
-function connect() {
-    return new Promise((resolve, reject) => {
-        socket = new WebSocket(LIST_FEATURES_ENDPOINT);
-        socket.onmessage = (m) => appendResult(BASE_ID, JSON.parse(m.data));
-        socket.onerror = (e) => appendResult(BASE_ID, {error: e});
-        socket.onopen = () => {
-            connected = true;
-            resolve("Connected to " + LIST_FEATURES_ENDPOINT);
-        };
-    })
+function clearResult() {
+    let element = document.getElementById(BASE_ID + "-result");
+    if (element) {
+        element.classList.add("pf-u-display-none");
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
+    }
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
+function appendResult(json) {
+    let element = document.getElementById(BASE_ID + "-result");
+    if (element) {
+        element.classList.remove("pf-u-display-none");
+        let code = codeElement(json);
+        element.appendChild(code);
+        code.scrollIntoView();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById(BASE_ID + "-sample").addEventListener("click", sample);
     document.getElementById(BASE_ID + "-submit").addEventListener("click", submit);
     document.getElementById(BASE_ID + "-clear").addEventListener("click", () => {
         clearForm(BASE_ID)
-        clearResult(BASE_ID);
+        clearResult();
     });
 });
