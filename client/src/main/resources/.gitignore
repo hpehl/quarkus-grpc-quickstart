@@ -1,0 +1,7 @@
+META-INF/resources/*.jpg
+META-INF/resources/*.svg
+META-INF/resources/webfonts
+META-INF/resources/favicon.ico
+META-INF/resources/index.html
+META-INF/resources/main.js
+META-INF/resources/styles.css
