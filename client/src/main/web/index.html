@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Quarkus - gRPC Quickstart</title>
+</head>
+
+<body>
+<div class="pf-c-page">
+    <header role="banner" class="pf-c-page__header qs-header">
+        <div class="pf-c-page__header-brand pf-m-grow pf-u-flex-grow-1 qs-header">
+            <a href="#overview">Quarkus gRPC Quickstart</a>
+        </div>
+    </header>
+    <div class="pf-c-page__sidebar">
+        <nav class="pf-c-nav">
+            <ul class="pf-c-nav__simple-list">
+                <li class="pf-c-nav__item">
+                    <a href="#overview" class="pf-c-nav__link pf-m-current">Overview</a>
+                </li>
+                <li class="pf-c-nav__item">
+                    <a href="#get-feature" class="pf-c-nav__link">Get Feature</a>
+                </li>
+                <li class="pf-c-nav__item">
+                    <a href="#list-features" class="pf-c-nav__link">List Features</a>
+                </li>
+                <li class="pf-c-nav__item">
+                    <a href="#route-chat" class="pf-c-nav__link">Route Chat</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <main role="main" class="pf-c-page__main">
+        <section class="pf-c-page__main-section pf-m-light">
+            <a id="overview"></a>
+            <div class="pf-c-content">
+                <h1>Overview</h1>
+                <p>Demo how to use <a href="https://grpc.io/">gRPC</a> with <a href="https://quarkus.io">Quarkus</a>.
+                    The quickstart implements the
+                    <a href="https://github.com/grpc/grpc/blob/master/examples/protos/route_guide.proto">route guide</a>
+                    example from gRPC Java and consists of a server and client part:</p>
+                <h2>Server</h2>
+                <p>The server uses the
+                    <a href="https://github.com/hpehl/quarkus-grpc-extension">Quarkus gRPC extension</a> and
+                    registers a gRPC service and interceptor. The service defines simple unary and streaming methods:
+                </p>
+                <pre><code class="proto">service RouteGuide {
+    rpc GetFeature(Point) returns (Feature) {}
+
+    rpc ListFeatures(Rectangle) returns (stream Feature) {}
+
+    rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+}
+</code></pre>
+                <h2>Client</h2>
+                <p>The client serves this page and registers a REST endpoint and two web sockets:</p>
+                <ul>
+                    <li>The REST endpoint serves as a proxy for the blocking gRPC call to <code>GetFeature</code></li>
+                    <li>The web sockets implement the streaming calls to the gRPC services <code>ListFeatures</code>
+                        and <code>RouteChat</code></li>
+                </ul>
+                <p>Both the REST endpoint and the websockets use the
+                    <a href="https://github.com/hpehl/quarkus-grpc-extension">Quarkus gRPC client extension</a>
+                    to inject a managed channel and to talk to the gRPC service.</p>
+            </div>
+        </section>
+
+        <section class="pf-c-page__main-section pf-m-light pf-u-display-none">
+            <a id="get-feature"></a>
+            <div class="pf-c-content">
+                <h1>Get Feature</h1>
+                <p>A simple RPC.</p>
+                <p>Obtains the feature at a given position. If there's no feature at the given position,
+                    404 will be returned.</p>
+                <p>Points are represented as latitude-longitude pairs in the E7 representation (degrees multiplied by
+                    10**7 and rounded to the nearest integer). Latitudes should be in the range +/- 90 degrees and
+                    longitude should be in the range +/- 180 degrees (inclusive).</p>
+                <p>Use <a id="get-feature-sample"
+                        data-lat="409146138" data-lon="-746188906"
+                        href="#">(409146138 / -746188906)</a> for a valid response.
+                </p>
+                <div id="get-feature-form" class="pf-c-form pf-m-horizontal">
+                    <div class="pf-c-form__group">
+                        <label class="pf-c-form__label" required for="get-feature-lat">
+                            Latidute <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+                        </label>
+                        <div class="pf-c-form__horizontal-group">
+                            <input id="get-feature-lat" name="get-feature-lat"
+                                    type="number" required
+                                    class="pf-c-form-control"
+                                    aria-describedby="get-feature-lat-desc">
+                            <p id="get-feature-lat-desc" class="pf-c-form__helper-text pf-m-error pf-u-display-none">
+                                Please provide a valid value for latidude.</p>
+                        </div>
+                    </div>
+                    <div class="pf-c-form__group">
+                        <label class="pf-c-form__label" required for="get-feature-lon">
+                            Longitude <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+                        </label>
+                        <div class="pf-c-form__horizontal-group">
+                            <input id="get-feature-lon" name="get-feature-lon"
+                                    type="number" required
+                                    class="pf-c-form-control"
+                                    aria-describedby="get-feature-lon-desc">
+                            <p id="get-feature-lon-desc" class="pf-c-form__helper-text pf-m-error pf-u-display-none">
+                                Please provide a valid value for longitude.</p>
+                        </div>
+                    </div>
+                    <div class="pf-c-form__group pf-m-action">
+                        <div class="pf-c-form__horizontal-group">
+                            <div class="pf-c-form__actions">
+                                <button id="get-feature-submit" class="pf-c-button pf-m-primary">Submit</button>
+                                <button id="get-feature-clear" class="pf-c-button pf-m-secondary">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <pre id="get-feature-result" class="pf-u-mt-xl pf-u-display-none"><code class="json"></code></pre>
+        </section>
+
+        <section class="pf-c-page__main-section pf-m-light pf-u-display-none">
+            <a id="list-features"></a>
+            <div class="pf-c-content">
+                <h1>List Features</h1>
+                <p>A server-to-client streaming RPC.</p>
+                <p>Obtains the features available within the given rectangle. Results are streamed rather than
+                    returned at once (e.g. in a response message with a repeated field), as the rectangle may cover a
+                    large area and contain a huge number of features.</p>
+                <p>Points are represented as latitude-longitude pairs in the E7 representation (degrees multiplied by
+                    10**7 and rounded to the nearest integer). Latitudes should be in the range +/- 90 degrees and
+                    longitude should be in the range +/- 180 degrees (inclusive).</p>
+                <p>Use
+                    <a id="list-features-sample"
+                            data-lo-lat="400000000" data-lo-lon="-750000000"
+                            data-hi-lat="420000000" data-hi-lon="-730000000"
+                            href="#">(400000000, -750000000) / (420000000, -730000000)</a> for a valid response.</p>
+                <div id="list-features-form" class="pf-c-form pf-m-horizontal">
+                    <div class="pf-c-form__group">
+                        <label class="pf-c-form__label" required for="list-features-lo-lat">
+                            Low Point <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+                        </label>
+                        <div class="pf-c-form__horizontal-group">
+                            <div class="pf-c-input-group">
+                                <input id="list-features-lo-lat" name="list-features-lo-lat"
+                                        type="number" required
+                                        class="pf-c-form-control pf-u-mr-md"
+                                        aria-describedby="list-features-lo-desc">
+                                <input id="list-features-lo-lon" name="list-features-lo-lon"
+                                        type="number" required
+                                        class="pf-c-form-control"
+                                        aria-describedby="list-features-lo-lon-desc">
+                            </div>
+                            <p id="list-features-lo-desc"
+                                    class="pf-c-form__helper-text pf-m-error pf-u-display-none">
+                                Please provide valid values for the low point.</p>
+                        </div>
+                    </div>
+                    <div class="pf-c-form__group">
+                        <label class="pf-c-form__label" required for="list-features-hi-lat">
+                            High Point <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+                        </label>
+                        <div class="pf-c-form__horizontal-group">
+                            <div class="pf-c-input-group">
+                                <input id="list-features-hi-lat" name="list-features-hi-lat"
+                                        type="number" required
+                                        class="pf-c-form-control pf-u-mr-md"
+                                        aria-describedby="list-features-hi-desc">
+                                <input id="list-features-hi-lon" name="list-features-hi-lon"
+                                        type="number" required
+                                        class="pf-c-form-control"
+                                        aria-describedby="list-features-hi-desc">
+                            </div>
+                            <p id="list-features-hi-desc" class="pf-c-form__helper-text pf-m-error pf-u-display-none">
+                                Please provide valid values for the hight point.</p>
+                        </div>
+                    </div>
+                    <div class="pf-c-form__group pf-m-action">
+                        <div class="pf-c-form__horizontal-group">
+                            <div class="pf-c-form__actions">
+                                <button id="list-features-submit" class="pf-c-button pf-m-primary">Submit</button>
+                                <button id="list-features-clear" class="pf-c-button pf-m-secondary">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <pre id="list-features-result" class="pf-u-mt-xl pf-u-display-none"></pre>
+        </section>
+
+        <section class="pf-c-page__main-section pf-m-light pf-u-display-none">
+            <a id="route-chat"></a>
+            <div class="pf-c-content">
+                <h1>Route Chat</h1>
+                <p>A bidirectional streaming RPC.</p>
+                <p>Accepts a stream of RouteNotes sent while a route is being traversed, while receiving other
+                    RouteNotes (e.g. from other users).</p>
+                <h2 class="pf-c-title pf-m-lg">Not Yet Implemented</h2>
+            </div>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

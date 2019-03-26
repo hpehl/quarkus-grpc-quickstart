@@ -1,0 +1,7 @@
+*.jpg
+*.svg
+webfonts
+favicon.ico
+index.html
+main.js
+styles.css
