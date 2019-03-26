@@ -1,7 +1,7 @@
 export function clearForm(baseId) {
     let form = document.getElementById(baseId + "-form");
     if (form) {
-        form.querySelectorAll("input[required]").forEach(input => {
+        form.querySelectorAll("input").forEach(input => {
             input.value = "";
             let describedBy = input.getAttribute("aria-describedby");
             let description = document.getElementById(describedBy);
