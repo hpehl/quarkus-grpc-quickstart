@@ -4,26 +4,12 @@ Demo how to use [gRPC](https://grpc.io/) and [Quarkus](https://quarkus.io). Uses
 
 ## Get Started
 
-1. Build
+```bash
+mvn clean install
+java -jar server/target/grpc-quickstart-server-1.0-runner.jar
+java -jar client/target/grpc-quickstart-client-1.0-runner.jar
+```
 
-    ```
-    mvn clean install
-    ```
-
-1. Start server
-
-    ```
-    cd server
-    java -jar target/grpc-quickstart-server-1.0-runner.jar  
-    ```
-
-1. Start client
-
-    ```
-    cd client 
-    java -jar target/grpc-quickstart-client-1.0-runner.jar  
-    ```
-
-1. Open http://localhost:8080
+Open http://localhost:8080
 
 Have fun!
