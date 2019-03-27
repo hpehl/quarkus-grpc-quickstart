@@ -9,29 +9,29 @@
 
 <body>
 <div class="pf-c-page">
-    <header role="banner" class="pf-c-page__header qs-header">
-        <div class="pf-c-page__header-brand pf-m-grow pf-u-flex-grow-1 qs-header">
-            <a href="#overview">Quarkus gRPC Quickstart</a>
+    <header role="banner" class="pf-c-page__header qs-header-bg">
+        <div class="pf-c-page__header-brand">
+            <a href="#overview" class="pf-c-page__header-brand-link">Quarkus gRPC Quickstart</a>
+        </div>
+        <div class="pf-c-page__header-nav">
+            <nav class="pf-c-nav" aria-label="Global">
+                <ul class="pf-c-nav__horizontal-list">
+                    <li class="pf-c-nav__item">
+                        <a href="#overview" class="pf-c-nav__link pf-m-current">Overview</a>
+                    </li>
+                    <li class="pf-c-nav__item">
+                        <a href="#get-feature" class="pf-c-nav__link">Get Feature</a>
+                    </li>
+                    <li class="pf-c-nav__item">
+                        <a href="#list-features" class="pf-c-nav__link">List Features</a>
+                    </li>
+                    <li class="pf-c-nav__item">
+                        <a href="#route-chat" class="pf-c-nav__link">Route Chat</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
-    <div class="pf-c-page__sidebar">
-        <nav class="pf-c-nav">
-            <ul class="pf-c-nav__simple-list">
-                <li class="pf-c-nav__item">
-                    <a href="#overview" class="pf-c-nav__link pf-m-current">Overview</a>
-                </li>
-                <li class="pf-c-nav__item">
-                    <a href="#get-feature" class="pf-c-nav__link">Get Feature</a>
-                </li>
-                <li class="pf-c-nav__item">
-                    <a href="#list-features" class="pf-c-nav__link">List Features</a>
-                </li>
-                <li class="pf-c-nav__item">
-                    <a href="#route-chat" class="pf-c-nav__link">Route Chat</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
     <main role="main" class="pf-c-page__main">
         <section class="pf-c-page__main-section pf-m-light">
             <a id="overview"></a>
@@ -187,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            <pre id="list-features-result" class="qs-result-overflow pf-u-mt-xl pf-u-display-none"></pre>
+            <pre id="list-features-result" class="pf-u-mt-xl pf-u-display-none"></pre>
         </section>
 
         <section class="pf-c-page__main-section pf-m-light pf-u-display-none">
@@ -209,7 +209,7 @@
                                         class="pf-u-mr-md"
                                         aria-describedby="route-chat-requests">
                                 <output id="route-chat-requests-out" name="route-chat-requests-out"
-                                        class="qs-output"
+                                        class="qs-output-w2"
                                         for="route-chat-requests">3</output>
                             </div>
                             <p id="route-chat-lo-desc" class="pf-c-form__helper-text">
@@ -229,15 +229,18 @@
             <div id="route-chat-result" class="pf-l-flex pf-u-mt-xl pf-u-display-none">
                 <div class="pf-m-grow">
                     <div class="pf-c-content"><h3>Client</h3></div>
-                    <pre id="route-chat-result-input" class="qs-result-overflow"></pre>
+                    <pre id="route-chat-result-input"></pre>
                 </div>
                 <div class="pf-m-grow">
                     <div class="pf-c-content"><h3>Server</h3></div>
-                    <pre id="route-chat-result-output" class="qs-result-overflow"></pre>
+                    <pre id="route-chat-result-output"></pre>
                 </div>
             </div>
         </section>
     </main>
+    <aside class="pf-c-page__sidebar">
+        <pre id="grpc-result" class="qs-sidebar-code"></pre>
+    </aside>
 </div>
 </body>
 </html>

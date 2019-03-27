@@ -29,6 +29,10 @@
     <version>1.0</version>
     <name>gRPC Quickstart :: Client</name>
 
+    <properties>
+        <npm.task>dev</npm.task>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>io.grpc.examples.routeguide</groupId>
@@ -90,7 +94,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>run ${npm.task}</arguments>
                         </configuration>
                         <phase>prepare-package</phase>
                     </execution>
@@ -102,4 +106,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <npm.task>build</npm.task>
+            </properties>
+        </profile>
+    </profiles>
 </project>

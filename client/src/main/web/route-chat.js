@@ -1,4 +1,4 @@
-import {codeElement} from "./result.js";
+import {addResult, clearResult} from "./result.js";
 
 const BASE_ID = "route-chat";
 const ROUTE_CHAT_ENDPOINT = "ws://localhost:8080/route-chat";
@@ -9,8 +9,8 @@ var connected = false;
 function connect() {
     return new Promise((resolve, reject) => {
         socket = new WebSocket(ROUTE_CHAT_ENDPOINT);
-        socket.onmessage = (m) => appendOut(JSON.parse(m.data));
-        socket.onerror = (e) => appendOut({error: e});
+        socket.onmessage = (m) => addResult(JSON.parse(m.data));
+        socket.onerror = (e) => addResult({error: e});
         socket.onopen = () => {
             connected = true;
             resolve("Connected to " + ROUTE_CHAT_ENDPOINT);
@@ -30,25 +30,6 @@ function submit() {
     }
 }
 
-function clearResult() {
-    let result = document.getElementById(BASE_ID + "-result");
-    if (result) {
-        result.classList.add("pf-u-display-none");
-    }
-    let input = document.getElementById(BASE_ID + "-result-input");
-    if (input) {
-        while (input.firstChild) {
-            input.removeChild(input.firstChild);
-        }
-    }
-    let output = document.getElementById(BASE_ID + "-result-output");
-    if (output) {
-        while (output.firstChild) {
-            output.removeChild(output.firstChild);
-        }
-    }
-}
-
 function send() {
     let requests = parseInt(document.getElementById(BASE_ID + "-requests").value, 10);
     for (let i = 0; i < requests; i++) {
@@ -58,37 +39,11 @@ function send() {
                     latitude: 1 + randomInt(2),
                     longitude: 1 + randomInt(2)
                 },
-                message: randomString(10)
+                message: randomString(5)
             };
-            appendInput(routeNote);
             socket.send(JSON.stringify(routeNote));
+            addResult(routeNote);
         }, delay());
-    }
-}
-
-function appendInput(json) {
-    let result = document.getElementById(BASE_ID + "-result");
-    if (result) {
-        result.classList.remove("pf-u-display-none");
-    }
-    let input = document.getElementById(BASE_ID + "-result-input");
-    if (input) {
-        let code = codeElement(json);
-        input.appendChild(code);
-        code.scrollIntoView();
-    }
-}
-
-function appendOut(json) {
-    let result = document.getElementById(BASE_ID + "-result");
-    if (result) {
-        result.classList.remove("pf-u-display-none");
-    }
-    let output = document.getElementById(BASE_ID + "-result-output");
-    if (output) {
-        let code = codeElement(json);
-        output.appendChild(code);
-        code.scrollIntoView();
     }
 }
 

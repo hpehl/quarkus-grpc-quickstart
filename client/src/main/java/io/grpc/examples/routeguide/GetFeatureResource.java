@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -23,11 +22,15 @@ public class GetFeatureResource {
 
     private static final Logger logger = Logger.getLogger(GetFeatureResource.class.getName());
 
-    @Inject @Channel("route") ManagedChannel channel;
     private RouteGuideGrpc.RouteGuideBlockingStub blockingStub;
 
-    @PostConstruct
-    void init() {
+    @SuppressWarnings("unused")
+    public GetFeatureResource() {
+        // no-arg constructor to satisfy CDI
+    }
+
+    @Inject
+    public GetFeatureResource(@Channel("route") ManagedChannel channel) {
         blockingStub = RouteGuideGrpc.newBlockingStub(channel);
     }
 

@@ -1,21 +1,47 @@
-.qs-header {
-  background-color: var(--pf-global--BackgroundColor--dark-200);
-  a {
-    color: white;
-  }
-}
-
-.qs-output {
-  text-align: right;
-  width: 2rem;
-}
-
-.qs-result-overflow {
-  max-height: 300px;
-  overflow-y: scroll;
-}
+@import "@patternfly/patternfly/sass-utilities/_all.scss";
 
 .hljs {
   font-family: "overpass-mono";
   font-size: .75rem;
+}
+
+.pf-c-page__header {
+  --pf-c-page__header-brand--md--BackgroundColor: #333;
+  background-color: #333;
+}
+
+.pf-c-page__header-brand-link {
+  color: #fff;
+}
+
+.pf-c-page {
+  --pf-c-page__sidebar--md--Width: #{pf-size-prem(500px)};
+  --pf-c-page__sidebar--BoxShadow: none;
+  --pf-c-page__sidebar--PaddingTop: 0;
+  --pf-c-page__sidebar--PaddingBottom: 0;
+
+  grid-template-columns: 1fr max-content;
+}
+
+.pf-c-page__main {
+  grid-column-start: 1;
+  grid-column-end: nav;
+}
+
+.pf-c-page__sidebar {
+  background-color: #474949;
+  grid-column-start: main;
+
+  .pf-c-page__main-section {
+    background-color: #474949;
+  }
+}
+
+.qs-output-w2 {
+  text-align: right;
+  width: 2rem;
+}
+
+.qs-sidebar-code {
+  margin: 1rem;
 }

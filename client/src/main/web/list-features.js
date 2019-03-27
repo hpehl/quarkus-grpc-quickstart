@@ -1,5 +1,5 @@
 import {clearForm, validateForm} from "./form.js";
-import {codeElement} from "./result.js";
+import {addResult, clearResult} from "./result.js";
 
 const BASE_ID = "list-features";
 const LIST_FEATURES_ENDPOINT = "ws://localhost:8080/list-features";
@@ -20,8 +20,8 @@ function sample(event) {
 function connect() {
     return new Promise((resolve, reject) => {
         socket = new WebSocket(LIST_FEATURES_ENDPOINT);
-        socket.onmessage = (m) => appendResult(JSON.parse(m.data));
-        socket.onerror = (e) => appendResult({error: e});
+        socket.onmessage = (m) => addResult(JSON.parse(m.data));
+        socket.onerror = (e) => addResult({error: e});
         socket.onopen = () => {
             connected = true;
             resolve("Connected to " + LIST_FEATURES_ENDPOINT);
@@ -48,26 +48,6 @@ function submit() {
             clearResult();
             socket.send(payload);
         }
-    }
-}
-
-function clearResult() {
-    let element = document.getElementById(BASE_ID + "-result");
-    if (element) {
-        element.classList.add("pf-u-display-none");
-        while (element.firstChild) {
-            element.removeChild(element.firstChild);
-        }
-    }
-}
-
-function appendResult(json) {
-    let element = document.getElementById(BASE_ID + "-result");
-    if (element) {
-        element.classList.remove("pf-u-display-none");
-        let code = codeElement(json);
-        element.appendChild(code);
-        code.scrollIntoView();
     }
 }
 

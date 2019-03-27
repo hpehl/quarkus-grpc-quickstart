@@ -11,7 +11,7 @@ function showNavigation(hash) {
         }
     });
     var anchor = document.querySelector(hash);
-    document.querySelectorAll(".pf-c-page__main-section").forEach(element => {
+    document.querySelectorAll(".pf-c-page__main .pf-c-page__main-section").forEach(element => {
         if (element.contains(anchor)) {
             element.classList.remove("pf-u-display-none");
         } else {

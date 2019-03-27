@@ -5,7 +5,6 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.websocket.OnClose;
@@ -24,12 +23,16 @@ import io.quarkus.grpc.client.runtime.Channel;
 @ServerEndpoint("/route-chat")
 public class RouteChatSocket {
 
-    @Inject @Channel("route") ManagedChannel channel;
     private RouteGuideGrpc.RouteGuideStub asyncStub;
     private Map<String, StreamObserver<RouteNote>> requestObservers;
 
-    @PostConstruct
-    void init() {
+    @SuppressWarnings("unused")
+    public RouteChatSocket() {
+        // no-arg constructor to satisfy CDI
+    }
+
+    @Inject
+    public RouteChatSocket(@Channel("route") ManagedChannel channel) {
         requestObservers = new HashMap<>();
         asyncStub = RouteGuideGrpc.newStub(channel);
     }

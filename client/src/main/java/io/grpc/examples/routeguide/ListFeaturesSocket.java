@@ -3,7 +3,6 @@ package io.grpc.examples.routeguide;
 import java.io.IOException;
 import java.io.StringWriter;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.websocket.OnMessage;
@@ -20,11 +19,15 @@ import io.quarkus.grpc.client.runtime.Channel;
 @ServerEndpoint("/list-features")
 public class ListFeaturesSocket {
 
-    @Inject @Channel("route") ManagedChannel channel;
     private RouteGuideGrpc.RouteGuideStub asyncStub;
 
-    @PostConstruct
-    void init() {
+    @SuppressWarnings("unused")
+    public ListFeaturesSocket() {
+        // no-arg constructor to satisfy CDI
+    }
+
+    @Inject
+    public ListFeaturesSocket(@Channel("route") ManagedChannel channel) {
         asyncStub = RouteGuideGrpc.newStub(channel);
     }
 

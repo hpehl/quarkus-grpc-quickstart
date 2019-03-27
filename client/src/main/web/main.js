@@ -2,7 +2,7 @@
 import hljs from "highlight.js/lib/highlight";
 import json from "highlight.js/lib/languages/json";
 import protobuf from  "highlight.js/lib/languages/protobuf";
-import "highlight.js/styles/default.css";
+import "highlight.js/styles/rainbow.css";
 import "@patternfly/patternfly/patternfly.scss";
 import "@patternfly/patternfly/patternfly-addons.scss";
 
@@ -19,3 +19,4 @@ import "./route-chat.js";
 
 hljs.registerLanguage("json", json);
 hljs.registerLanguage("protobuf", protobuf);
+hljs.initHighlightingOnLoad();
