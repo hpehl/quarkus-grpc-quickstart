@@ -109,7 +109,7 @@
 
     <profiles>
         <profile>
-            <id>prod</id>
+            <id>native</id>
             <properties>
                 <npm.task>build</npm.task>
             </properties>
