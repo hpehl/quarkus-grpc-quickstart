@@ -40,12 +40,12 @@
         <plugin.protobuf.version>0.5.1</plugin.protobuf.version>
 
         <junit.version>5.4.0</junit.version>
-        <grpc.version>1.18.0</grpc.version>
+        <grpc.version>1.19.0</grpc.version>
         <mockito.version>2.24.5</mockito.version>
         <node.version>v11.12.0</node.version>
         <npm.version>6.9.0</npm.version>
-        <protobuf.version>3.5.1</protobuf.version>
-        <protoc.version>3.5.1-1</protoc.version>
+        <protobuf.version>3.7.0</protobuf.version>
+        <protoc.version>3.7.1</protoc.version>
         <quarkus.version>0.12.0</quarkus.version>
         <quarkus.grpc.version>0.12.0</quarkus.grpc.version>
         <quarkus.grpc.client.version>0.12.0</quarkus.grpc.client.version>
