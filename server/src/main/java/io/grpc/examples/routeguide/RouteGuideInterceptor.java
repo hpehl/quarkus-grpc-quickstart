@@ -6,7 +6,7 @@ import io.grpc.Metadata;
 import io.grpc.ServerCall;
 import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
-import io.quarkus.grpc.runtime.GrpcInterceptor;
+import io.quarkus.grpc.GrpcInterceptor;
 
 @GrpcInterceptor
 public class RouteGuideInterceptor implements ServerInterceptor {

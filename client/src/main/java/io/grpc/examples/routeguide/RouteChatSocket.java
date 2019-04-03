@@ -2,11 +2,9 @@ package io.grpc.examples.routeguide;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -15,9 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
-import io.grpc.ManagedChannel;
 import io.grpc.stub.StreamObserver;
-import io.quarkus.grpc.client.runtime.Channel;
 
 @ApplicationScoped
 @ServerEndpoint("/route-chat")
@@ -26,16 +22,15 @@ public class RouteChatSocket {
     private RouteGuideGrpc.RouteGuideStub asyncStub;
     private Map<String, StreamObserver<RouteNote>> requestObservers;
 
-    @SuppressWarnings("unused")
-    public RouteChatSocket() {
-        // no-arg constructor to satisfy CDI
-    }
-
-    @Inject
-    public RouteChatSocket(@Channel("route") ManagedChannel channel) {
-        requestObservers = new HashMap<>();
-        asyncStub = RouteGuideGrpc.newStub(channel);
-    }
+    // @Inject
+    // @Channel("route")
+    // ManagedChannel channel;
+    //
+    // @PostConstruct
+    // void init() {
+    //     requestObservers = new HashMap<>();
+    //     asyncStub = RouteGuideGrpc.newStub(channel);
+    // }
 
     @OnOpen
     public void onOpen(Session session) {

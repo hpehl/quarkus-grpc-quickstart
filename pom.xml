@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>32</version>
+        <version>34</version>
     </parent>
 
     <groupId>io.grpc.examples.routeguide</groupId>
@@ -33,22 +33,22 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <npm.task>dev</npm.task>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <extension.os.version>1.5.0.Final</extension.os.version>
-        <plugin.frontend.version>1.6</plugin.frontend.version>
-        <plugin.protobuf.version>0.5.1</plugin.protobuf.version>
+        <extension.os.version>1.6.2</extension.os.version>
+        <plugin.frontend.version>1.7.5</plugin.frontend.version>
+        <plugin.protobuf.version>0.6.1</plugin.protobuf.version>
 
-        <junit.version>5.4.0</junit.version>
         <grpc.version>1.19.0</grpc.version>
         <mockito.version>2.24.5</mockito.version>
         <node.version>v11.12.0</node.version>
         <npm.version>6.9.0</npm.version>
         <protobuf.version>3.7.0</protobuf.version>
         <protoc.version>3.7.1</protoc.version>
-        <quarkus.version>0.12.0</quarkus.version>
-        <quarkus.grpc.version>0.12.0</quarkus.grpc.version>
-        <quarkus.grpc.client.version>0.12.0</quarkus.grpc.client.version>
+        <quarkus.version>999-SNAPSHOT</quarkus.version>
+        <quarkus.grpc.version>999-SNAPSHOT</quarkus.grpc.version>
+        <quarkus.grpc.client.version>999-SNAPSHOT</quarkus.grpc.client.version>
     </properties>
 
     <modules>
@@ -63,53 +63,33 @@
                 <groupId>io.grpc.examples.routeguide</groupId>
                 <artifactId>grpc-quickstart-proto</artifactId>
                 <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-bom</artifactId>
-                <version>${quarkus.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-grpc</artifactId>
-                <version>${quarkus.grpc.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-grpc-client</artifactId>
-                <version>${quarkus.grpc.client.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <!-- We just want to have the generated code -->
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.github.eirslett</groupId>
-                    <artifactId>frontend-maven-plugin</artifactId>
-                    <version>${plugin.frontend.version}</version>
-                    <configuration>
-                        <nodeVersion>${node.version}</nodeVersion>
-                        <npmVersion>${npm.version}</npmVersion>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-maven-plugin</artifactId>
-                    <version>${quarkus.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+    <profiles>
+        <profile>
+            <id>jdk-8-classpath</id>
+            <activation>
+                <jdk>[9,</jdk>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <release>8</release>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

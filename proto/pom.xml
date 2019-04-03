@@ -24,9 +24,7 @@
         <version>1.0</version>
     </parent>
 
-    <groupId>io.grpc.examples.routeguide</groupId>
     <artifactId>grpc-quickstart-proto</artifactId>
-    <version>1.0</version>
     <name>gRPC Quickstart :: Proto</name>
 
     <dependencies>
@@ -34,31 +32,26 @@
             <groupId>io.grpc</groupId>
             <artifactId>grpc-core</artifactId>
             <version>${grpc.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
             <version>${grpc.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
             <version>${grpc.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>${protobuf.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java-util</artifactId>
             <version>${protobuf.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -15,7 +16,7 @@ import com.google.protobuf.util.JsonFormat;
 import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
-import io.quarkus.grpc.client.runtime.Channel;
+import io.quarkus.grpc.client.Channel;
 
 @Path("/get-feature/{lat}/{lon}")
 public class GetFeatureResource {
@@ -24,13 +25,12 @@ public class GetFeatureResource {
 
     private RouteGuideGrpc.RouteGuideBlockingStub blockingStub;
 
-    @SuppressWarnings("unused")
-    public GetFeatureResource() {
-        // no-arg constructor to satisfy CDI
-    }
-
     @Inject
-    public GetFeatureResource(@Channel("route") ManagedChannel channel) {
+    @Channel("route")
+    ManagedChannel channel;
+
+    @PostConstruct
+    void init() {
         blockingStub = RouteGuideGrpc.newBlockingStub(channel);
     }
 
