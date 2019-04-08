@@ -35,6 +35,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <npm.task>dev</npm.task>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <grpc.route.host>localhost</grpc.route.host>
+        <grpc.route.port>5050</grpc.route.port>
 
         <extension.os.version>1.6.2</extension.os.version>
         <plugin.frontend.version>1.7.5</plugin.frontend.version>
