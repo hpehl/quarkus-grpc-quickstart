@@ -125,6 +125,12 @@
 
     <profiles>
         <profile>
+            <id>prod</id>
+            <properties>
+                <npm.task>build</npm.task>
+            </properties>
+        </profile>
+        <profile>
             <id>native</id>
             <activation>
                 <property>
