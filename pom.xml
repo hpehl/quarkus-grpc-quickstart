@@ -42,11 +42,11 @@
         <plugin.frontend.version>1.7.5</plugin.frontend.version>
         <plugin.protobuf.version>0.6.1</plugin.protobuf.version>
 
-        <grpc.version>1.19.0</grpc.version>
+        <grpc.version>1.20.0</grpc.version>
         <mockito.version>2.24.5</mockito.version>
         <node.version>v11.12.0</node.version>
         <npm.version>6.9.0</npm.version>
-        <protobuf.version>3.7.0</protobuf.version>
+        <protobuf.version>3.7.1</protobuf.version>
         <protoc.version>3.7.1</protoc.version>
         <quarkus.version>999-SNAPSHOT</quarkus.version>
         <quarkus.grpc.version>999-SNAPSHOT</quarkus.grpc.version>
