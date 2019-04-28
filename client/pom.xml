@@ -73,6 +73,25 @@
 
         <plugins>
             <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <directory>src/main/resources/META-INF/resources/webfonts</directory>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/resources/META-INF/resources</directory>
+                            <includes>
+                                <include>*.jpg</include>
+                                <include>*.svg</include>
+                                <include>favicon.ico</include>
+                                <include>index.html</include>
+                                <include>main.js</include>
+                                <include>styles.css</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>${plugin.frontend.version}</version>
@@ -127,7 +146,7 @@
         <profile>
             <id>prod</id>
             <properties>
-                <npm.task>build</npm.task>
+                <npm.task>prod</npm.task>
             </properties>
         </profile>
         <profile>

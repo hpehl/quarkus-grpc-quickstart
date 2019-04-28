@@ -56,7 +56,7 @@ public class ListFeaturesSocket {
 
                 @Override
                 public void onCompleted() {
-                    session.getAsyncRemote().sendText("{\"status\": \"DONE\"}");
+                    session.getAsyncRemote().sendText("{\"status\": \"completed\"}");
                 }
             });
         } catch (InvalidProtocolBufferException e) {
