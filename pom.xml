@@ -46,8 +46,7 @@
         <mockito.version>2.24.5</mockito.version>
         <node.version>v11.12.0</node.version>
         <npm.version>6.9.0</npm.version>
-        <protobuf.version>3.7.1</protobuf.version>
-        <protoc.version>3.7.1</protoc.version>
+        <protobuf.version>3.8.0-rc-1</protobuf.version>
         <quarkus.version>999-SNAPSHOT</quarkus.version>
         <quarkus.grpc.version>999-SNAPSHOT</quarkus.grpc.version>
         <quarkus.grpc.client.version>999-SNAPSHOT</quarkus.grpc.client.version>
@@ -72,6 +71,13 @@
                         <artifactId>*</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-bom</artifactId>
+                <version>${protobuf.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -123,7 +123,7 @@
                         <configuration>
                             <arguments>run ${npm.task}</arguments>
                         </configuration>
-                        <phase>prepare-package</phase>
+                        <phase>generate-resources</phase>
                     </execution>
                 </executions>
             </plugin>
