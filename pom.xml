@@ -39,14 +39,14 @@
         <grpc.route.port>5050</grpc.route.port>
 
         <extension.os.version>1.6.2</extension.os.version>
-        <plugin.frontend.version>1.7.5</plugin.frontend.version>
+        <plugin.frontend.version>1.7.6</plugin.frontend.version>
         <plugin.protobuf.version>0.6.1</plugin.protobuf.version>
 
-        <grpc.version>1.20.0</grpc.version>
-        <mockito.version>2.24.5</mockito.version>
-        <node.version>v11.12.0</node.version>
+        <grpc.version>1.22.0</grpc.version>
+        <mockito.version>2.28.2</mockito.version>
+        <node.version>v12.5.0</node.version>
         <npm.version>6.9.0</npm.version>
-        <protobuf.version>3.8.0-rc-1</protobuf.version>
+        <protobuf.version>3.9.0-rc-1</protobuf.version>
         <quarkus.version>999-SNAPSHOT</quarkus.version>
         <quarkus.grpc.version>999-SNAPSHOT</quarkus.grpc.version>
         <quarkus.grpc.client.version>999-SNAPSHOT</quarkus.grpc.client.version>

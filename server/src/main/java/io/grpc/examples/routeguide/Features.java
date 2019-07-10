@@ -3,6 +3,7 @@ package io.grpc.examples.routeguide;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -11,6 +12,8 @@ import com.google.protobuf.util.JsonFormat;
 
 @ApplicationScoped
 public class Features implements Iterable<Feature> {
+
+    private static final Logger logger = Logger.getLogger(Features.class.getName());
 
     private static final String JSON = "{\n" +
             "  \"feature\": [{\n" +
@@ -618,13 +621,15 @@ public class Features implements Iterable<Feature> {
 
     private final List<Feature> features;
 
-    public Features() {
+    Features() {
         features = new ArrayList<>();
         try {
             FeatureDatabase.Builder database = FeatureDatabase.newBuilder();
             JsonFormat.parser().merge(JSON, database);
             features.addAll(database.getFeatureList());
-        } catch (InvalidProtocolBufferException ignore) {}
+        } catch (InvalidProtocolBufferException e) {
+            logger.severe("Unable to initialize features database: " + e.getMessage());
+        }
     }
 
     @Override
@@ -632,11 +637,7 @@ public class Features implements Iterable<Feature> {
         return features.iterator();
     }
 
-    public boolean add(Feature feature) {return features.add(feature);}
-
-    public Feature get(int index) {return features.get(index);}
-
-    public int size() {return features.size();}
+    boolean add(Feature feature) {return features.add(feature);}
 
     void clear() {features.clear();}
 }
