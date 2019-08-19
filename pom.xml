@@ -47,9 +47,9 @@
         <node.version>v12.5.0</node.version>
         <npm.version>6.9.0</npm.version>
         <protobuf.version>3.9.0-rc-1</protobuf.version>
-        <quarkus.version>999-SNAPSHOT</quarkus.version>
-        <quarkus.grpc.version>999-SNAPSHOT</quarkus.grpc.version>
-        <quarkus.grpc.client.version>999-SNAPSHOT</quarkus.grpc.client.version>
+        <quarkus.version>0.21.1</quarkus.version>
+        <quarkus.grpc.version>0.21.1</quarkus.grpc.version>
+        <quarkus.grpc.client.version>0.21.1</quarkus.grpc.client.version>
     </properties>
 
     <modules>

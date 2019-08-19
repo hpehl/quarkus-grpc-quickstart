@@ -31,7 +31,7 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-core</artifactId>
-            <version>999-SNAPSHOT</version>
+            <version>0.21.1</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
