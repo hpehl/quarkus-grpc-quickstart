@@ -36,7 +36,7 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-grpc</artifactId>
-            <version>${quarkus.grpc.version}</version>
+            <version>${quarkus-grpc.version}</version>
         </dependency>
 
         <dependency>

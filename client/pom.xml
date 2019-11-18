@@ -44,7 +44,7 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-grpc-client</artifactId>
-            <version>${quarkus.grpc.client.version}</version>
+            <version>${quarkus-grpc.client.version}</version>
         </dependency>
     </dependencies>
 
