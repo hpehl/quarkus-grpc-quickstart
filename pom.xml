@@ -32,9 +32,9 @@
         <node.version>v12.5.0</node.version>
         <npm.version>6.9.0</npm.version>
         <protobuf.version>3.9.0-rc-1</protobuf.version>
-        <quarkus.version>1.0.0.CR1</quarkus.version>
-        <quarkus-grpc.version>1.0.0.CR1</quarkus-grpc.version>
-        <quarkus-grpc.client.version>1.0.0.CR1</quarkus-grpc.client.version>
+        <quarkus.version>1.0.0.CR2</quarkus.version>
+        <quarkus-grpc.version>1.0.0.CR2</quarkus-grpc.version>
+        <quarkus-grpc.client.version>1.0.0.CR2</quarkus-grpc.client.version>
     </properties>
 
     <modules>
