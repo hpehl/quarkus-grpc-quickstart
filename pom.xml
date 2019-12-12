@@ -27,14 +27,14 @@
         <plugin.frontend.version>1.7.6</plugin.frontend.version>
         <plugin.protobuf.version>0.6.1</plugin.protobuf.version>
 
-        <grpc.version>1.22.0</grpc.version>
+        <grpc.version>1.24.0</grpc.version>
         <mockito.version>2.28.2</mockito.version>
         <node.version>v12.5.0</node.version>
         <npm.version>6.9.0</npm.version>
-        <protobuf.version>3.9.0-rc-1</protobuf.version>
-        <quarkus.version>1.0.0.CR2</quarkus.version>
-        <quarkus-grpc.version>1.0.0.CR2</quarkus-grpc.version>
-        <quarkus-grpc.client.version>1.0.0.CR2</quarkus-grpc.client.version>
+        <protobuf.version>3.11.1</protobuf.version>
+        <quarkus.version>1.0.1.Final</quarkus.version>
+        <quarkus-grpc.version>1.0.1.Final</quarkus-grpc.version>
+        <quarkus-grpc.client.version>1.0.1.Final</quarkus-grpc.client.version>
     </properties>
 
     <modules>
