@@ -1,3 +1,9 @@
+:warning: **No longer supported**
+
+This extension is no longer supported. Please use the official gRPC extension which is expected to be released as part of Quarkus 1.5.0.Final: https://github.com/quarkusio/quarkus/tree/master/extensions/grpc
+
+---
+
 # Quarkus gRPC Quickstart
 
 Demo how to use [gRPC](https://grpc.io/) and [Quarkus](https://quarkus.io). Uses both the [gRPC](https://github.com/hpehl/quarkus-grpc-extension) and the [gRPC client](https://github.com/hpehl/quarkus-grpc-client-extension) extension to implement the [route guide example](https://github.com/grpc/grpc-java/tree/v1.18.0/examples#grpc-examples) provided by [gRPC Java](https://github.com/grpc/grpc-java).

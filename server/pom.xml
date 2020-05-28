@@ -38,6 +38,11 @@
             <artifactId>quarkus-grpc</artifactId>
             <version>${quarkus-grpc.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>io.quarkus</groupId>

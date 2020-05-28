@@ -46,6 +46,11 @@
             <artifactId>quarkus-grpc-client</artifactId>
             <version>${quarkus-grpc.client.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-core</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
